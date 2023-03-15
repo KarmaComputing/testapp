@@ -196,3 +196,60 @@ remote:  !     Ensure the default nginx site is removed before continuing.
 To 65.109.229.10:testapp
  * [new branch]      master -> master
 ```
+
+# Set dokku domain global
+
+```
+root@testdokku:~# dokku domains:report 
+=====> testapp domains information
+       Domains app enabled:           true                     
+       Domains app vhosts:            testapp.testdokku        
+       Domains global enabled:        true                     
+       Domains global vhosts:         testdokku
+```
+
+### Remove unused domains
+```
+root@testdokku:~# dokku domains:remove testapp testapp.testdokku
+-----> Removed testapp.testdokku from testapp
+-----> Creating http nginx.conf
+       Reloading nginx
+root@testdokku:~# dokku domains:remove testapp testdokku
+-----> Removed testdokku from testapp
+-----> Creating http nginx.conf
+       Reloading nginx
+```
+
+## Add global domain
+
+```
+root@testdokku:~# dokku domains:add-global 65.109.229.10.sslip.io
+-----> Added 65.109.229.10.sslip.io
+```
+
+## Add domain to app
+```
+root@testdokku:~# dokku domains:add testapp testapp.65.109.229.10.sslip.io
+-----> Added testapp.65.109.229.10.sslip.io to testapp
+-----> Configuring testapp.65.109.229.10.sslip.io...(using built-in template)
+-----> Creating http nginx.conf
+       Reloading nginx
+```
+```
+root@testdokku:~# dokku domains:report 
+=====> testapp domains information
+       Domains app enabled:           true                     
+       Domains app vhosts:            testapp.65.109.229.10.sslip.io
+       Domains global enabled:        true                     
+       Domains global vhosts:         testdokku 65.109.229.10.sslip.io
+```
+
+## Validate app OK
+
+```
+$ curl http://testapp.65.109.229.10.sslip.io:8000/ | grep 'This is a test.'
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    16  100    16    0     0     47      0 --:--:-- --:--:-- --:--:--    47
+This is a test.
+```
