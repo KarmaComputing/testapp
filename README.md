@@ -253,3 +253,87 @@ $ curl http://testapp.65.109.229.10.sslip.io:8000/ | grep 'This is a test.'
 100    16  100    16    0     0     47      0 --:--:-- --:--:-- --:--:--    47
 This is a test.
 ```
+
+## Deploy again (after `fdbb468c2afbf544215cbea688f7e5930972aef9`)
+
+```
+$ git push dokku master:master 
+Warning: Permanently added '65.109.229.10' (ED25519) to the list of known hosts.
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 4.14 KiB | 2.07 MiB/s, done.
+Total 6 (delta 3), reused 0 (delta 0), pack-reused 0
+-----> Cleaning up...
+-----> Building testapp from Dockerfile
+-----> Setting config vars
+       DOKKU_DOCKERFILE_PORTS:  8000
+remote: #1 [internal] load .dockerignore
+remote: #1 transferring context: 2B done
+remote: #1 DONE 0.0s
+remote: 
+remote: #2 [internal] load build definition from Dockerfile
+remote: #2 transferring dockerfile: 124B 0.1s done
+remote: #2 DONE 0.1s
+remote: 
+remote: #3 [internal] load metadata for docker.io/library/python:latest
+remote: #3 DONE 0.8s
+remote: 
+remote: #4 [1/2] FROM docker.io/library/python@sha256:1db68f83ca0d2735aeb804708cbc2b7be573ff4c236b2bbfa220bbac81512bb8
+remote: #4 DONE 0.0s
+remote: 
+remote: #5 [internal] load build context
+remote: #5 transferring context: 15.01kB done
+remote: #5 DONE 0.0s
+remote: 
+remote: #4 [1/2] FROM docker.io/library/python@sha256:1db68f83ca0d2735aeb804708cbc2b7be573ff4c236b2bbfa220bbac81512bb8
+remote: #4 CACHED
+remote: 
+remote: #6 [2/2] COPY . .
+remote: #6 DONE 0.0s
+remote: 
+remote: #7 exporting to image
+remote: #7 exporting layers 0.0s done
+remote: #7 writing image sha256:098ce2c2a517933e6d8bc27f03575bbb9e4a0177c0fb38afd0db63639d18745f done
+remote: #7 naming to docker.io/dokku/testapp:latest done
+remote: #7 DONE 0.0s
+-----> Releasing testapp...
+-----> Checking for predeploy task
+       No predeploy task found, skipping
+-----> Checking for release task
+       No release task found, skipping
+=====> Processing deployment checks
+       No CHECKS file found. Simple container checks will be performed.
+       For more efficient zero downtime deployments, create a CHECKS file. See https://dokku.com/docs/deployment/zero-downtime-deploys/ for examples
+-----> Deploying testapp via the docker-local scheduler...
+-----> Deploying web (count=1)
+       Attempting pre-flight checks (web.1)
+       Waiting for 10 seconds (web.1)
+       Default container check successful (web.1)
+       Scheduling old container shutdown in 60 seconds (web.1)
+=====> Triggering early nginx proxy rebuild
+-----> Ensuring network configuration is in sync for testapp
+-----> Configuring testapp.65.109.229.10.sslip.io...(using built-in template)
+-----> Creating http nginx.conf
+       Reloading nginx
+-----> Running post-deploy
+remote:  !     Detected IPv4 domain name with nginx proxy enabled.
+remote:  !     Ensure the default nginx site is removed before continuing.
+-----> Ensuring network configuration is in sync for testapp
+-----> Configuring testapp.65.109.229.10.sslip.io...(using built-in template)
+-----> Creating http nginx.conf
+       Reloading nginx
+-----> Renaming containers
+       Found previous container(s) (787586fe792c) named testapp.web.1
+       Renaming container (787586fe792c) testapp.web.1 to testapp.web.1.1678897911
+       Renaming container testapp.web.1.upcoming-5661 (90fece539d9c) to testapp.web.1
+-----> Checking for postdeploy task
+       No postdeploy task found, skipping
+-----> Shutting down old containers in 60 seconds
+=====> Application deployed:
+       http://testapp.65.109.229.10.sslip.io:8000
+
+To 65.109.229.10:testapp
+   619d8f9..fdbb468  master -> master
+```
