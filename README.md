@@ -345,3 +345,12 @@ git remote add origin git@github.com:KarmaComputing/testapp.git
 git branch -M main
 git push -u origin main
 ```
+
+> Note: Branch name changed from `master` -> `main`
+
+## Setup dokku simple github action
+```
+vim .github/workflows/dokku-simple.yml
+# use https://github.com/dokku/github-action/blob/master/example-workflows/simple.yml
+```
+
