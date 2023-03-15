@@ -391,3 +391,10 @@ root@testdokku:~# dokku apps:destroy testapp
 -----> Cleaning up...
 -----> Retiring old containers and images
 ```
+
+```
+git commit -am 'test theory # syntax = docker/dockerfile:experimental'
+git push origin main
+```
+
+Result: Green github action dokku-deploy simple: https://github.com/KarmaComputing/testapp/actions/runs/4429023817/jobs/7768919531
