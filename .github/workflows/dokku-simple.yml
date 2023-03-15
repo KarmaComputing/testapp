@@ -1,0 +1,23 @@
+---
+name: 'dokku deploy simple'
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  dokku-deploy-simple:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cloning repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Push to dokku
+        uses: dokku/github-action@master
+        with:
+          git_remote_url: 'ssh://dokku@65.109.229.10:22/testapp'
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
