@@ -39,7 +39,7 @@ git remote add dokku dokku@65.109.229.10:testapp
 
 ```
 git push dokku main:master
-``
+```
 
 Push output:
 ```
@@ -336,4 +336,12 @@ remote:  !     Ensure the default nginx site is removed before continuing.
 
 To 65.109.229.10:testapp
    619d8f9..fdbb468  master -> master
+```
+
+# Add to github (to prepare for some automation)
+
+```
+git remote add origin git@github.com:KarmaComputing/testapp.git
+git branch -M main
+git push -u origin main
 ```
