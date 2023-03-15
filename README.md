@@ -368,3 +368,26 @@ curl http://testapp.65.109.229.10.sslip.io:8000/ | grep 'added action simple'
 This is a test. added action simple
 
 ```
+
+# Hunch: DO `Dockerfile`'s with `# syntax = docker/dockerfile:experimental` trip-up dokku build type detection?
+
+Other thoughts:
+
+- Race conditions? We often see the issue in combination with Github Action runs, are multiple runes/cancelled builds confusing dokku when a pull request github action is re-built?
+
+
+## Destory app before testing `# syntax = docker/dockerfile:experimental` theory
+
+```
+# dokku apps:list
+=====> My Apps
+testapp
+root@testdokku:~# dokku apps:destroy testapp
+ !     WARNING: Potentially Destructive Action
+ !     This command will destroy app testapp.
+ !     To proceed, type "testapp"
+> testapp
+-----> Destroying testapp (including all add-ons)
+-----> Cleaning up...
+-----> Retiring old containers and images
+```
