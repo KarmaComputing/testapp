@@ -5,7 +5,7 @@ name: 'dokku deploy simple'
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   dokku-deploy-simple:
