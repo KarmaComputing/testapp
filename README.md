@@ -354,3 +354,17 @@ vim .github/workflows/dokku-simple.yml
 # use https://github.com/dokku/github-action/blob/master/example-workflows/simple.yml
 ```
 
+### Observe github action simple successful:
+
+Yes: https://github.com/KarmaComputing/testapp/actions/runs/4428764231/jobs/7768305331
+
+Proof:
+
+```
+curl http://testapp.65.109.229.10.sslip.io:8000/ | grep 'added action simple'
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    36  100    36    0     0    284      0 --:--:-- --:--:-- --:--:--   283
+This is a test. added action simple
+
+```
