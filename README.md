@@ -1,3 +1,9 @@
+# Troubleshooting Dokku issue (#5743 Procfile.250547.missing: no such file or directory)[https://github.com/dokku/dokku/issues/5743]
+
+- The issue: `remote:  !     open /var/lib/dokku/data/ps/main/Procfile.250547.missing: no such file or directory`
+- The cuase: (Unkown- that's what this repo is investigating)
+
+
 # Searver creation
 
 Server ip: `65.109.229.10`
@@ -401,4 +407,16 @@ Result: Green github action dokku-deploy simple: https://github.com/KarmaComputi
 
 ## Test race condition - are multiple deploys start/stops/canceled runs causing the issue?
 
-added `.github/workflows/pr-preview.yml`.
+- added `.github/workflows/pr-preview.yml`.
+- Corrected missing secrets [(ff73f4603f036af5cd0b49f44b97dff377a3cc3f](https://github.com/KarmaComputing/testapp/commit/ff73f4603f036af5cd0b49f44b97dff377a3cc3f))
+- **Re-created issue**: (`remote:  !     open /var/lib/dokku/data/ps/main/Procfile.250547.missing: no such file or directory`)[https://github.com/KarmaComputing/testapp/actions/runs/4436541590/jobs/7785096767#step:7:37]
+
+Let's turn on trace and catch more info then push again.
+
+Turning on dokku trace:
+
+ ```
+ # dokku trace:on
+ -----> Enabling trace mode
+ # exit
+```
