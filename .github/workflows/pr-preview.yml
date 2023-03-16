@@ -27,8 +27,8 @@ jobs:
           fetch-depth: 0
       - name: Prepare runner with ssh keys
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
-          DOKKU_HOST: ${{ secrets.DOKKU_HOST }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          DOKKU_HOST: 65.109.229.10
         run: |
           set -x
           mkdir -p ~/.ssh
@@ -42,8 +42,8 @@ jobs:
           echo $GITHUB_ENV
       - name: Create dokku app for pr branch if dosent already exist using dokku apps:create
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
-          DOKKU_HOST: ${{ secrets.DOKKU_HOST }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          DOKKU_HOST: 65.109.229.10
         run: |
           set -x
           eval `ssh-agent -s`
@@ -53,8 +53,8 @@ jobs:
 
       - name: Push to dokku
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
-          DOKKU_HOST: ${{ secrets.DOKKU_HOST }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          DOKKU_HOST: 65.109.229.10
         run: |
           set -x
           mkdir -p ~/.ssh
@@ -64,4 +64,4 @@ jobs:
           git remote add dokku dokku@$DOKKU_HOST:${{ env.SUBDOMAIN }}
           git push -f dokku ${{ env.SUBDOMAIN }}
 
-          echo Visit your app here: http://${{ env.SUBDOMAIN }}.${{ secrets.DOKKU_HOST }}.sslip.io:80
+          echo Visit your app here: http://${{ env.SUBDOMAIN }}.65.109.229.10.sslip.io:80
