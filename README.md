@@ -420,3 +420,14 @@ Turning on dokku trace:
  -----> Enabling trace mode
  # exit
 ```
+
+two pipeliness ran, finally we have recreated the issue.
+
+# Issue has been re-created here:
+
+- One failure <strike>(but not the Proc error we're interested in)</strike> (at first I missed , then saw in-fact we had re-created the issue in this run), We've re-created the Procfile issue!: https://github.com/KarmaComputing/testapp/actions/runs/4436620363/jobs/7785270827#step:7:1310  "`open /var/lib/dokku/data/ps/main/Procfile.272993.missing: no such file or directory`"
+
+Re-running the failed job.
+
+> Note we're *intentionally* allowing two dokku pipelines to run, to test the hypothesis of a potential race condition/locking issue, though,
+  it's bizzar (to me) why dokku is searching for a Procfile at all given this is a Dockerfile build type.
