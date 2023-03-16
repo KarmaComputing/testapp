@@ -398,3 +398,7 @@ git push origin main
 ```
 
 Result: Green github action dokku-deploy simple: https://github.com/KarmaComputing/testapp/actions/runs/4429023817/jobs/7768919531
+
+## Test race condition - are multiple deploys start/stops/canceled runs causing the issue?
+
+added `.github/workflows/pr-preview.yml`.
