@@ -61,7 +61,6 @@ jobs:
           eval `ssh-agent -s`
           ssh-add - <<< "$SSH_PRIVATE_KEY"
           ssh-keyscan $DOKKU_HOST >> ~/.ssh/known_hosts
-          git remote add dokku dokku@$DOKKU_HOST:${{ env.SUBDOMAIN }}
-          git push -f dokku ${{ env.SUBDOMAIN }}
+          git push ssh://dokku@65.109.229.10:22/main ${{ github.sha }}:refs/heads/master
 
           echo Visit your app here: http://${{ env.SUBDOMAIN }}.65.109.229.10.sslip.io:80
